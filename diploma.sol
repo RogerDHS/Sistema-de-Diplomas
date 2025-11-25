@@ -28,16 +28,14 @@ contract RegistroDeDiploma {
     event DiplomaAdd(bytes32 cpfHash, string Nome, string Empresa);
     event DiplomaAtt(bytes32 cpfHash, uint index);
 
-    // ----------------------------------------------------------------------
     // 🔹 FUNÇÃO PÚBLICA PARA GERAR HASH DO CPF
-    // ----------------------------------------------------------------------
+
     function gerarHashCPF(string calldata cpf) external pure returns (bytes32) {
         return keccak256(abi.encodePacked(cpf));
     }
 
-    // ----------------------------------------------------------------------
     // LOGIN / LOGOUT
-    // ----------------------------------------------------------------------
+
     function login(string calldata loginName, string calldata password) external {
         require(keccak256(abi.encodePacked(loginName)) == Login, "Login incorreto");
         require(keccak256(abi.encodePacked(password)) == Senha, "Senha incorreta");
@@ -78,9 +76,8 @@ contract RegistroDeDiploma {
         emit DiplomaAdd(cpfHash, Nome, Empresa);
     }
 
-    // ----------------------------------------------------------------------
     // ADMIN: VER CPF ORIGINAL
-    // ----------------------------------------------------------------------
+
     function verCpfOriginal(bytes32 cpfHash)
         external
         view
